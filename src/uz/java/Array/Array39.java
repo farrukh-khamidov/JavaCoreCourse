@@ -17,34 +17,32 @@ public class Array39 {
         int count = 0;
 
         byte monotone;
+
         if (a[1] > a[0]) monotone = 1;
         else if (a[1] < a[0]) monotone = -1;
-        else {
-            monotone = 0;
-            count = 1;
-        }
+        else monotone = 0;
 
-        for (int i = 2; i < n-1; i++) {
+        for (int i = 1; i < n; i++) {
             if (monotone == 1 && a[i] <= a[i-1]) {
                 count++;
-                if (a[i+1] < a[i]) monotone = -1;
-                else if (a[i+1] == a[i]) monotone = 0;
+                if (i+1 < n && a[i+1] < a[i]) monotone = -1;
+                else if (i+1 < n && a[i+1] == a[i]) {
+                    monotone = 0;
+                }
             } else if (monotone==-1 && a[i] >= a[i-1]) {
                 count++;
-                if (a[i+1] > a[i]) monotone = 1;
-                else if (a[i+1] == a[i]) monotone = 0;
-            } else if (monotone == 0){
-                if (a[i] > a[i-1]) monotone = 1;
-                else if (a[i] < a[i-1]) monotone = -1;
-                else {
-                    count++;
-                    if (a[i+1] > a[i]) monotone = 1;
-                    else if (a[i+1] < a[i]) monotone = -1;
-                    else if (i==n-2) count++;
+                if (i+1 < n && a[i+1] > a[i]) monotone = 1;
+                else if (i+1 < n && a[i+1] == a[i]) {
+                    monotone = 0;
                 }
+            } else if (monotone == 0){
+                count++;
+                if (i+1 < n && a[i+1] > a[i]) monotone = 1;
+                else if (i+1 < n && a[i+1] < a[i]) monotone = -1;
             }
         }
         count++;
+
         System.out.println(count);
 
     }
