@@ -33,29 +33,24 @@ public class Array64 {
 
         while (i >=0 || j >=0 || k >=0){
             if (i >=0 && j >=0 && k >=0){
-                while (i >=0 && j >=0 && k >=0 && a[i] <= b[j] && a[i] <= c[k]) d[index++] = a[i--];
-                while (i >=0 && j >=0 && k >=0 && b[j] <= a[i] && b[j] <= c[k]) d[index++] = b[j--];
+                while (i >=0 && a[i] <= b[j] && a[i] <= c[k]) d[index++] = a[i--];
+                while (i >=0 && j >=0 && b[j] <= a[i] && b[j] <= c[k]) d[index++] = b[j--];
                 while (i >=0 && j >=0 && k >=0 && c[k] <= a[i] && c[k] <= b[j]) d[index++] = c[k--];
             } else if (j >=0 && k >=0){
-                while (j >=0 && k >=0 && b[j] <= c[k]) d[index++] = b[j--];
+                while (j >=0 && b[j] <= c[k]) d[index++] = b[j--];
                 while (j >=0 && k >=0 && c[k] <= b[j]) d[index++] = c[k--];
             } else if (i >=0 && k >=0){
-                while (i >=0 && k >=0 && a[i] <= c[k]) d[index++] = a[i--];
+                while (i >=0 && a[i] <= c[k]) d[index++] = a[i--];
                 while (i >=0 && k >=0 && c[k] <= a[i]) d[index++] = c[k--];
             } else if (i >=0 && j >=0){
-                while (i >=0 && j >=0 && a[i] <= b[j]) d[index++] = a[i--];
+                while (i >=0 && a[i] <= b[j]) d[index++] = a[i--];
                 while (i >=0 && j >=0 && b[j] <= a[i]) d[index++] = b[j--];
-            } else if (i >=0){
-                while (i >=0) d[index++] = a[i--];
-            } else if (j >=0){
+            } else {
                 while (j >=0) d[index++] = b[j--];
-            } else if (k >=0){
+                while (i >=0) d[index++] = a[i--];
                 while (k >=0) d[index++] = c[k--];
             }
-
         }
-
-
 
         for (i = 0; i < d.length; i++) {
             System.out.print(d[i] + " ");
